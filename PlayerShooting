@@ -1,0 +1,39 @@
+using UnityEngine;
+using System.Collections;
+
+public class PlayerShooting : MonoBehaviour {
+
+	public Animator animacion;
+
+	private int stateNumber = 1;
+
+	// Use this for initialization
+	void Start () {
+		animacion.GetComponent<Animator> ();
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		if(stateNumber == 1){
+			if (Input.GetKeyDown (KeyCode.A) || Input.GetMouseButtonDown (0)) {
+				animacion.SetBool ("PlayerShootRight", true);
+			}
+
+			if (Input.GetKeyUp (KeyCode.A) || Input.GetMouseButtonUp (0)) {
+				animacion.SetBool ("PlayerShootRight", false);
+				stateNumber = 2;
+			}
+		}
+		else if(stateNumber == 2){
+			if (Input.GetKeyDown (KeyCode.A) || Input.GetMouseButtonDown (0)) {
+				animacion.SetBool ("PlayerShootLeft", true);
+			}
+
+			if (Input.GetKeyUp (KeyCode.A) || Input.GetMouseButtonUp (0)) {
+				animacion.SetBool ("PlayerShootLeft", false);
+				stateNumber = 1;
+			}
+		}
+		//Debug.Log (stateNumber);
+	}
+}
